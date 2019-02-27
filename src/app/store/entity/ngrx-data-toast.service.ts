@@ -5,7 +5,7 @@ import { filter } from 'rxjs/operators';
 import { EntityAction, ofEntityOp, OP_ERROR, OP_SUCCESS, EntityCacheAction } from 'ngrx-data';
 import { ToastService } from '../../core/toast.service';
 
-/** Report ngrx-data success/error actions as toast messages **/
+/** Report _ngrx-data_ success/error actions as toast messages **/
 @Injectable({ providedIn: 'root' })
 export class NgrxDataToastService {
   constructor(actions$: Actions, toast: ToastService) {

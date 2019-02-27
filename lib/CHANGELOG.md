@@ -1,4 +1,4 @@
-# Angular ngrx-data library ChangeLog
+# Angular _ngrx-data_ library ChangeLog
 
 ### Version numbering
 
@@ -9,9 +9,9 @@ What to do?
 
 Our convention is that patch releases (the 3rd digit) shouldn't be breaking.
 
-But "minor" releases (the middle digit) may be breaking and are certainly "major" from the perspective of an ngrx-data user.
+But "minor" releases (the middle digit) may be breaking and are certainly "major" from the perspective of an _ngrx-data_ user.
 
-If you want to install updates but want to prevent accidental installation of a "major" ngrx-data release, use the `~` form of the npm package version constraint.
+If you want to install updates but want to prevent accidental installation of a "major" _ngrx-data_ release, use the `~` form of the npm package version constraint.
 
 In other words, it is safer to have something like the following in your `package.json`
 
@@ -57,7 +57,7 @@ Fix: missing `@Optional()` on `EntityCacheDataService` constructor parameter
 
 Non-breaking enhancements to _saveEntities_
 
-The ngrx-data reducers that handle a successful save need a `ChangeSet` to update the cache.
+The _ngrx-data_ reducers that handle a successful save need a `ChangeSet` to update the cache.
 For this reason, in prior versions, _the server had to respond with a_ `ChangeSet`.
 
 Often the server processes the saved entities without changing them.
@@ -105,8 +105,8 @@ There are some breaking changes but they won't affect many users and they are ea
 Many apps must save several entities at the same time in the same transaction.
 
 As of version 6.1, multi-entity saves are a first class feature.
-By "first class" we mean that ngrx-data offers a built-in, multiple-entity save solution that
-is consistent with ngrx-data itself:
+By "first class" we mean that _ngrx-data_ offers a built-in, multiple-entity save solution that
+is consistent with _ngrx-data_ itself:
 
 * defines a `ChangeSet`, describing `ChangeOperations` to be performed on multiple entities of multiple types.
 * has a set of `SAVE_ENTITIES...` cache-level actions.
@@ -276,7 +276,7 @@ new `EntityCollection.changeState` property which replaces the `originalValues` 
 
 Previously change tracking and undo were an incomplete, alpha feature.
 
-The ngrx-data now tracks changes properly by default and you can **_undo unsaved changes_**, reverting to the last know state of entity (or entities) on the server.
+The _ngrx-data_ now tracks changes properly by default and you can **_undo unsaved changes_**, reverting to the last know state of entity (or entities) on the server.
 This gives the developer a good option for recovering from optimistic saves that failed.
 
 #### Effect on delete
@@ -297,7 +297,7 @@ But we do not know of another way to tell `EntityEffects` to skip the HTTP DELET
 
 The new `EntityMetadata.noChangeTracking` flag, which is `false` by default,
 can be set `true` in the metadata for a collection.
-When `true`, ngrx-data does not track any changes for this collection
+When `true`, _ngrx-data_ does not track any changes for this collection
 and the `EntityCollection.changeState` property remains an empty object.
 
 You can also turnoff change tracking for a specific, cache-only action by choosing passing the `MergeStrategy.IgnoreTracking` as an option to the command.
@@ -314,7 +314,7 @@ Only (q)ueries in the guise of selectors returned values by way of Observables.
 
 The CQRS principle had to give way to practicality.
 Real apps often "wait" (asynchronously of course) until the save result becomes known.
-Ngrx-data saves are implemented with an ngrx _effect_ and
+Ngrx-data saves are implemented with an NgRx _effect_ and
 effects decouple the HTTP request from the server result.
 It was difficult to know when a save operation completed, either successfully or with an error.
 
@@ -357,7 +357,7 @@ These overrides must now return an appropriate terminating Observable.
 
 #### Cancellation with the correlation id
 
-The ngrx-data associates the initiating action (e.g., `QUERY_ALL`) ngrx-data to the reply actions
+The _ngrx-data_ associates the initiating action (e.g., `QUERY_ALL`) _ngrx-data_ to the reply actions
 (e.g,. `QUERY_ALL_SUCCESS` and `QUERY_ALL_ERROR` with a _correlation id_,
 which it generates automatically.
 
@@ -406,7 +406,7 @@ heroCollectionService.cancel(correlationId, 'User canceled');
 Note that cancelling a command may not stop the browser from making the HTTP request
 and it certainly can't stop the server from processing a request it received.
 
-It will prevent ngrx-data `EntityEffect` from creating and dispatching the success or failure
+It will prevent _ngrx-data_ `EntityEffect` from creating and dispatching the success or failure
 actions that would otherwise update the entity cache.
 
 #### HTTP requests from `EntityCollectionService` query and save commands are now concurrent.
@@ -490,7 +490,7 @@ joined `entityName`, `op`, `tag` (FKA `label`), `skip`, and `error` as propertie
 Future options would mean more action properties and more complicated EntityAction creation.
 
 This was a bad trend. From the beginning we have been uncomfortable with adding any properties to the action
-as ngrx actions out-of-the-box are just a _type_ and an optional _payload_.
+as NgRx actions out-of-the-box are just a _type_ and an optional _payload_.
 
 Now almost all properties have moved to the payload.
 
@@ -568,7 +568,7 @@ Ngrx-data needs a `CorrelationIdGenerator` service to coordinate multiple Entity
 The entity dispatcher save and query methods use it to generate correlation ids that
 associate a start action with its corresponding success or error action.
 
-The ngrx-data `CorrelationIdGenerator.next()` method produces a string
+The _ngrx-data_ `CorrelationIdGenerator.next()` method produces a string
 consisting of 'CRID' (for "<b>c</b>o<b>r</b>relation **id**") plus an increasing integer.
 
 Correlation ids are unique for a single browser session only.
@@ -584,7 +584,7 @@ The `getGuidComb()` function produces sequential guids which are sortable and of
 
 All three produce 32-character hexadecimal UUID strings, not the 128-bit representation found in server-side languages and databases. That's less than ideal but we don't have a better alternative at this time.
 
-> The GUID utility functions are not used by ngrx-data itself at this time
+> The GUID utility functions are not used by _ngrx-data_ itself at this time
 > They are included as candidates for generating persistable correlation ids if that becomes desirable.
 > These utilities are classified as _experimental_ and may be withdrawn or replaced in future.
 
@@ -618,13 +618,13 @@ write custom `EntityDataServices`, which won't have to deal with it,
 while ensuring that the success action payload dispatched to the store
 arrives at the reducer with the information needed for change tracking.
 
-The app or its tests _might_ expect ngrx-data to make DELETE requests when processing SAVE_DELETE... actions
+The app or its tests _might_ expect _ngrx-data_ to make DELETE requests when processing SAVE_DELETE... actions
 for entities that were added to the collection but not yet saved.
 
-As discussed above, when change tracking is enabled, ngrx-data no longer makes DELETE requests when processing SAVE_DELETE... actions
+As discussed above, when change tracking is enabled, _ngrx-data_ no longer makes DELETE requests when processing SAVE_DELETE... actions
 for entities that were added to the collection but not yet saved.
 
-It is possible that an app or its tests expected ngrx-data to make these DELETE requests. Please correct your code/tests accordingly.
+It is possible that an app or its tests expected _ngrx-data_ to make these DELETE requests. Please correct your code/tests accordingly.
 
 ### Other Breaking Changes
 
@@ -656,7 +656,7 @@ You don't expect to inject the factory that makes that thing into the constructo
 In fact, `EntityCollectionServiceFactory` wasn't behaving like a service factory.
 It merely exposed _yet another unnamed factory_, which made the core elements necessary for the service.
 
-This version of ngrx-data makes that elements factory explicit (`EntityCollectionServiceElementsFactory`).
+This version of _ngrx-data_ makes that elements factory explicit (`EntityCollectionServiceElementsFactory`).
 
 Unfortunately, this breaks your custom services.
 You'll have to modify them to inject and use the elements factory instead of the colletion service factory.
@@ -693,7 +693,7 @@ which can grow without disturbing the application derived classes.
 This manner of insulating custom classes from future library changes
 follows the _elements_ pattern used by the `EntityCollectionService`, as described above.
 
-Here is a custom `AppEntityServices` written for the _previous ngrx-data release_.
+Here is a custom `AppEntityServices` written for the _previous _ngrx-data_ release_.
 
 ```
 import { Injectable } from '@angular/core';
@@ -775,7 +775,7 @@ one of its lesser used `create` signatures.
 While moving entity action properties to `EntityAction.payload`, the `op` property was renamed `entityOp` for three reasons.
 
 1.  The rename reduces the likelihood that a non-EntityAction payload has a similarly named property that
-    would cause ngrx-data to treat the action as an `EntityAction`.
+    would cause _ngrx-data_ to treat the action as an `EntityAction`.
 
 1.  It should always have been called `entityOp` for consistency with its type as the value of the `EntityOp` enumeration.
 
@@ -798,7 +798,7 @@ Such overrides must now return an appropriate terminating Observable.
 
 `EntityEffects.persist$` uses `mergeMap` so that multiple HTTP requests may be in-flight concurrently.
 
-Previously used `concatMap`, which meant that ngrx-data did not make a new HTTP request until the previous request finished.
+Previously used `concatMap`, which meant that _ngrx-data_ did not make a new HTTP request until the previous request finished.
 
 This change may break an app that counted upon strictly sequential HTTP requests.
 
@@ -815,7 +815,7 @@ More significantly, the tag (FKA label) is now part of the payload rather than a
 
 #### Deleted `MERGE_ENTITY_CACHE`.
 
-The cache action was never used by ngrx-data itself.
+The cache action was never used by _ngrx-data_ itself.
 It can be easily implemented with
 `ENTITY_CACHE_SET` and a little code to get the current entity cache state.
 
@@ -829,7 +829,7 @@ Their reducers behave pessimistically or
 optimistically based on the `isOptimistic` flag in the `EntityActionOptions` in the action payload.
 
 This change does not affect the primary application API and should break only those apps that delved below
-the ngrx-data surface such as apps that implement their own entity action reducers.
+the _ngrx-data_ surface such as apps that implement their own entity action reducers.
 
 #### _EntityReducerFactory_ is now _EntityCacheReducerFactory_ and _EntityCollectionReducerRegistry_
 
@@ -911,7 +911,7 @@ import { Injectable } from '@angular/core';
 import { EntityActions, OP_ERROR, OP_SUCCESS } from 'ngrx-data';
 import { ToastService } from '@core/services/toast.service';
 
-/** Report ngrx-data success/error actions as toast messages **/
+/** Report _ngrx-data_ success/error actions as toast messages **/
 @Injectable()
 export class NgrxDataToastService {
   constructor(actions$: EntityActions, toast: ToastService) {
@@ -934,7 +934,7 @@ import { filter } from 'rxjs/operators'; // <-- no more "where"; you'll filter i
 
 import { ToastService } from '@core/services/toast.service';
 
-/** Report ngrx-data success/error actions as toast messages **/
+/** Report _ngrx-data_ success/error actions as toast messages **/
 @Injectable()
 export class NgrxDataToastService {
   constructor(actions$: Actions, toast: ToastService) {
@@ -1030,9 +1030,9 @@ customize it rather than simply replace a method in the `reducerMethods` diction
 Every symbol with "EntityService" in the name has been renamed with "EntityCollectionService" in that name for two reasons:
 
 1.  Every one of these renamed artifacts concerned a single _EntityCollection_.
-    This was not clear in the former name and one could easily think that the service concerned all collections or some other part of the ngrx-data system. Such uncertainty becomes more likely in the next point.
+    This was not clear in the former name and one could easily think that the service concerned all collections or some other part of the _ngrx-data_ system. Such uncertainty becomes more likely in the next point.
 
-2.  This release adds `EntityServices` which provides services across all entity collections managed by ngrx-data.
+2.  This release adds `EntityServices` which provides services across all entity collections managed by _ngrx-data_.
 
 In a related change, the former `EntityService.entityCache$` selector has been removed from the collection-level services, where it did not belong, and added to the new `EntityServices.entityCache$`.
 
@@ -1409,7 +1409,7 @@ and when defining an entity service class with much smaller API service.
 
 # release 1.0.0-alpha.4 (2018-02-13)
 
-* Upgrade to ngrx v5.1
+* Upgrade to NgRx v5.1
 * Angular peer dependencies as a range 4.1 < 6.0
 * Support "upsert"
 * Use "upsert" to implement QUERY_MANY effect [BREAKING CHANGE]

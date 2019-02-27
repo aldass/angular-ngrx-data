@@ -1,5 +1,5 @@
 /*
- * Test the component by mocking its injected ngrx-data HeroesService
+ * Test the component by mocking its injected _ngrx-data_ HeroesService
  *
  * You have a choice of testing the component class alone or the component-and-its-template.
  * The latter requires importing more stuff and a bit more setup.
@@ -44,7 +44,7 @@ describe('HeroesComponent (mock HeroesService)', () => {
   let testStore: Store<EntityCache>;
 
   let entityActionFactory: EntityActionFactory;
-  /** Create Hero entity actions as ngrx-data will do it */
+  /** Create Hero entity actions as _ngrx-data_ will do it */
   function createHeroAction(op: EntityOp, payload?: any) {
     return entityActionFactory.create('Hero', op, payload);
   }

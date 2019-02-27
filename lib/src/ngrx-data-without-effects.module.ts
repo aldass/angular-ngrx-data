@@ -122,7 +122,7 @@ export class NgrxDataModuleWithoutEffects implements OnDestroy {
     @Inject(ENTITY_CACHE_META_REDUCERS)
     private metaReducers: (MetaReducer<EntityCache, Action> | InjectionToken<MetaReducer<EntityCache, Action>>)[]
   ) {
-    // Add the ngrx-data feature to the Store's features
+    // Add the _ngrx-data_ feature to the Store's features
     // as Store.forFeature does for StoreFeatureModule
     const key = entityCacheName || ENTITY_CACHE_NAME;
 

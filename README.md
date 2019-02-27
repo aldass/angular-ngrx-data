@@ -12,7 +12,7 @@ But to use it properly requires _both_ a deep understanding of redux/ngrx _and_ 
 
 _Ngrx-data_ is an _ngrx_ extension that offers a gentle introduction to _ngrx/redux_ without the boilerplate.
 
-> **Try it!** See the [Quick Start](https://github.com/johnpapa/ngrx-data-lab/blob/master/README.md) for instructions on adding NgRx and ngrx-data to your app.
+> **Try it!** See the [Quick Start](https://github.com/johnpapa/ngrx-data-lab/blob/master/README.md) for instructions on adding NgRx and _ngrx-data_ to your app.
 
 <a id="why"></a>
 
@@ -29,15 +29,15 @@ The _ngrx-data_ library is _one_ way to stay on the _ngrx_ path while radically 
 
 ## It's still _NgRx_
 
-**This is a _library for ngrx_, not an ngrx alternative.**
+**This is a _library for ngrx_, not an NgRx alternative.**
 
-It's easy to combine standard ngrx with ngrx-data.
-It's easy to take control when you need it and hand control back to ngrx-data when you're done.
+It's easy to combine standard NgRx with _ngrx-data_.
+It's easy to take control when you need it and hand control back to _ngrx-data_ when you're done.
 
 Every entity has its own actions. Every operation takes its unique journey through the store, reducers, effects, and selectors. You just let _ngrx-data_ create these for you.
 
-You can add custom store properties, actions, reducers, selectors, and effects. You can override any ngrx-data behavior for an individual entity type or for all entities.
-You can make your own calls to the server and update the cached entity collections with the results using ngrx-data _cache-only_ actions.
+You can add custom store properties, actions, reducers, selectors, and effects. You can override any _ngrx-data_ behavior for an individual entity type or for all entities.
+You can make your own calls to the server and update the cached entity collections with the results using _ngrx-data_ _cache-only_ actions.
 
 You can see the _ngrx machinery_ at work with the [_redux developer tools_](#redux-dev-tools). You can listen to the flow of actions directly. You can _intercept and override anything_ ... but you only have to intervene where you want to add custom logic.
 
@@ -62,7 +62,7 @@ export const entityMetadata: EntityMetadataMap = {
   Villain: {}
 };
 
-// Help ngrx-data pluralize entity type names
+// Help _ngrx-data_ pluralize entity type names
 // because the plural of "Hero" is not "Heros"
 export const pluralNames = {
   Hero: 'Heroes' // the plural of Hero
@@ -90,7 +90,7 @@ the `HeroesComponent` injects `EntityServices` and asks it for an `EntityCollect
 registered under the `Hero` entity name.
 
 The component uses that service to read and save _Hero_ entity data
-in a reactive, immutable style, _without reference to any of the ngrx artifacts_.
+in a reactive, immutable style, _without reference to any of the NgRx artifacts_.
 
 ```javascript
 import { EntityCollectionService, EntityServices } from 'ngrx-data';
@@ -138,7 +138,7 @@ tailor the developer experience to your application needs.
 
 ## QuickStart
 
-Try the [Quick Start](https://github.com/johnpapa/ngrx-data-lab/blob/master/README.md) to experience NgRx and ngrx-data in your app.
+Try the [Quick Start](https://github.com/johnpapa/ngrx-data-lab/blob/master/README.md) to experience NgRx and _ngrx-data_ in your app.
 
 <a id="explore"></a>
 
@@ -150,7 +150,7 @@ demonstration application (the "demo app") that exercises many of the library fe
 The key folders in this repository are:
 
 * docs --> the docs for the library and the demo
-* lib ---> the ngrx-data library source code that we publish to npm
+* lib ---> the _ngrx-data_ library source code that we publish to npm
 * src/app ---> the demo app source
 * server ---> a node server for remote data access
 

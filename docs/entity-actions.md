@@ -242,12 +242,12 @@ The `EntityEffects` will see that such an action has an error and will return th
 The `skip` property tells downstream action receivers that they should skip the usual action processing.
 This flag is usually missing and is implicitly false.
 
-The ngrx-data sets `skip=true` when you try to delete a new entity that has not been saved.
+The _ngrx-data_ sets `skip=true` when you try to delete a new entity that has not been saved.
 When the `EntityEffects.persist$` method sees this flag set true on the `EntityAction` envelope,
 it skips the HTTP request and dispatches an appropriate `_SUCCESS` action with the
 original request payload.
 
-This feature allows ngrx-data to avoid making a DELETE request when you try to delete an entity
+This feature allows _ngrx-data_ to avoid making a DELETE request when you try to delete an entity
 that has been added to the collection but not saved.
 Such a request would have failed on the server because there is no such entity to delete.
 

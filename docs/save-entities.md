@@ -3,8 +3,8 @@
 Many apps must save several entities at the same time in the same transaction.
 
 As of version 6.1, multi-entity saves are a first class feature.
-By "first class" we mean that ngrx-data offers a built-in, multiple-entity save solution that
-is consistent with ngrx-data itself:
+By "first class" we mean that _ngrx-data_ offers a built-in, multiple-entity save solution that
+is consistent with _ngrx-data_ itself:
 
 * defines a `ChangeSet`, describing `ChangeOperations` to be performed on multiple entities of multiple types.
 * has a set of `SAVE_ENTITIES...` cache-level actions.
@@ -24,7 +24,7 @@ is consistent with ngrx-data itself:
 
 ### Save with _EntityCacheDispatcher.saveEntities()_
 
-This ngrx-data version includes a new `EntityCacheDispatcher` whose
+This _ngrx-data_ version includes a new `EntityCacheDispatcher` whose
 methods make it easier to create and dispatch all of the entity cache actions.
 
 Save a bunch of entity changes with the `saveEntities()` dispatcher method.
@@ -88,7 +88,7 @@ The app can wait for the `saveEntities()` observable to terminate (either succes
 Internally, the method creates a `SAVE_ENTITIES` action whose payload data includes the `ChangeSet`.
 The action also has the URL to which the requested save should be sent and a `correlationId` (see below).
 
-The method dispatches this action to the ngrx store where it is processed by the `EntityCacheReducer`.
+The method dispatches this action to the NgRx store where it is processed by the `EntityCacheReducer`.
 If the action is "optimistic", the reducer updates the cache with changes immediately.
 
 Then the `EntityCacheEffects` picks up the `SAVE_ENTITIES` action and sends a "save changes" request to
@@ -122,7 +122,7 @@ export interface ChangeSet<T = any> {
 
   /**
    * An arbitrary, serializable object that should travel with the ChangeSet.
-   * Meaningful to the ChangeSet producer and consumer. Ignored by ngrx-data.
+   * Meaningful to the ChangeSet producer and consumer. Ignored by _ngrx-data_.
    */
   extras?: T;
 
@@ -181,7 +181,7 @@ The reducer for the `SAVE_ENTITIES_SUCCESS` action, whose payload holds the succ
 If the action is "optimistic", the reducer applies the changes to the cache immediately, before you send them to the server.
 
 You can specify "optimistic" or "pessimistic" in the `options` parameter.
-If you don't specify this option, ngrx-data uses the default value in
+If you don't specify this option, _ngrx-data_ uses the default value in
 `EntityDispatcherDefaultOptions.optimisticSaveEntities`.
 It is `false` (pessimistic) by default.
 
@@ -225,7 +225,7 @@ The `EntityCacheDataService` constructs and POSTS the actual request to the give
 
 We anticipate that most server API implementors will not support the @ngrx/entity `Update` structure within the `ChangeSet`.
 So the `EntityCacheDataService.saveEntities()` method
-extracts the `changes` from the `Updates<T>[]` and sends these to the server; it then reconstructs the `Updates<T>[]` entities in from the server response so that the ngrx-data consumer of the response sees those `Update` structures.
+extracts the `changes` from the `Updates<T>[]` and sends these to the server; it then reconstructs the `Updates<T>[]` entities in from the server response so that the _ngrx-data_ consumer of the response sees those `Update` structures.
 
 As always, you can provide an alternative implementation:
 
@@ -272,7 +272,7 @@ a sequence of `EntityActions` to the entity collection reducers.
 The `store` never sees these reducer calls (and you won't see them in the redux tools).
 They are are applied synchronously, in succession to an instance of the `EntityCache` object.
 
-After all `ChangeSet.changes` have been reduced, the `EntityCacheReducer` returns the updated `EntityCache` and the ngrx `Store` gets the new, fully-updated cache in one shot.
+After all `ChangeSet.changes` have been reduced, the `EntityCacheReducer` returns the updated `EntityCache` and the NgRx `Store` gets the new, fully-updated cache in one shot.
 
 That should mean that the cache is in a stable state, with all relationships updated, before any code outside the store hears of the changes.
 
@@ -296,14 +296,14 @@ That's easy if the server-side store is a relational database.
 
 If your store doesn't support transactions, you'll have to decide if the multiple-entity save facility is right for you.
 
-On the ngrx-data client, it is "transactional" in the sense that a successful result returned by the server will be applied to the cache all at once.
+On the _ngrx-data_ client, it is "transactional" in the sense that a successful result returned by the server will be applied to the cache all at once.
 If the server returns an error result, the cache is not touched.
 
-**_Important_**: if you saved "optimisitically", ngrx-data updates the cache _before_ sending the request to the server.
+**_Important_**: if you saved "optimisitically", _ngrx-data_ updates the cache _before_ sending the request to the server.
 
 Ngrx-data _does not roll back_ the `EntityCache` automatically when an _optimistic save_ fails.
 
-Fortunately, the ngrx-data collection reducers updated the `ChangeState` of the affected entities _before merging_ the changes into the cache (see the ngrx-data `ChangeTracker`).
+Fortunately, the _ngrx-data_ collection reducers updated the `ChangeState` of the affected entities _before merging_ the changes into the cache (see the _ngrx-data_ `ChangeTracker`).
 
 You have good options if the save fails.
 

@@ -1,6 +1,6 @@
-## Angular ngrx-data repository Changelog
+## Angular _ngrx-data_ repository Changelog
 
-The ngrx-data library has its own [CHANGELOG.md](lib/CHANGELOG.md) and versioning scheme in `/lib`.
+The _ngrx-data_ library has its own [CHANGELOG.md](lib/CHANGELOG.md) and versioning scheme in `/lib`.
 Please look there.
 
 **_This_** Changelog covers changes to the repository and the demo applications.
@@ -8,12 +8,12 @@ Please look there.
 <a id="0.6.3">
 # 0.6.3 (2018-09-18)
 
-* Added "Delete All Villains" to demonstrate the multi-entity save feature introduced in ngrx-data v6.1.0.
+* Added "Delete All Villains" to demonstrate the multi-entity save feature introduced in _ngrx-data_ v6.1.0.
 
 <a id="0.6.2">
 # 0.6.2 (2018-06-26)
 
-* Significantly refactored for ngrx-data `6.0.2-beta.7`.
+* Significantly refactored for _ngrx-data_ `6.0.2-beta.7`.
 
 <a id="0.6.1">
 # 0.6.1 (2018-05-25)
@@ -45,9 +45,9 @@ which still works.
 # 0.2.13 (2018-05-04)
 
 * modified app to provide app-specific Pluralizer and Logger to prove that works.
-  These versions merely inherit from the ngrx-data versions, making no changes.
+  These versions merely inherit from the _ngrx-data_ versions, making no changes.
 
-* ngrx-data paths in all `tsconfig.json` point to `dist/ngrx-data` instead of `lib/src`, on Filipe Silva' recommendation.
+* _ngrx-data_ paths in all `tsconfig.json` point to `dist/ngrx-data` instead of `lib/src`, on Filipe Silva' recommendation.
   This means that the app points to the result of the library build, not the library source
   and `npm run build-all` does a production build against the library output just as an app
   would build against the installed npm packages.
@@ -168,7 +168,7 @@ Revises the demo app and updates the docs to conform to alpha.9
 * Changed _ngrx-data_ paths in `tsconfig.app.json` and `tsconfig.spec.json`
   to point to `"../../lib/src"` instead of `"../../dist/ngrx-data"`.
 
-  This enables debugging and rebuilding of the app when you change an ngrx-data library
+  This enables debugging and rebuilding of the app when you change an _ngrx-data_ library
   file while running `ng serve`.
   Without that change, could only debug into the consolidated, build `ngrx-data.js` file
   (no `.ts`!) and had to re-run `npm run build-lib` to get lib changes to propagate.
@@ -186,7 +186,7 @@ Revises the demo app and updates the docs to conform to alpha.9
 # 0.2.0 (2018-02-13)
 
 * Moved library CHANGELOG.md to the `../lib` folder
-* Upgrade to ngrx v.5.1
+* Upgrade to NgRx v.5.1
 
 ### Breaking Change
 

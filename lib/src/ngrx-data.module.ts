@@ -75,7 +75,7 @@ export class NgrxDataModule {
 
   constructor(private effectSources: EffectSources, entityCacheEffects: EntityCacheEffects, entityEffects: EntityEffects) {
     // We can't use `forFeature()` because, if we did, the developer could not
-    // replace the ngrx-data `EntityEffects` with a custom alternative.
+    // replace the _ngrx-data_ `EntityEffects` with a custom alternative.
     // Replacing that class is an extensibility point we need.
     //
     // The FEATURE_EFFECTS token is not exposed, so can't use that technique.

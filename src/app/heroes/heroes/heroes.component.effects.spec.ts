@@ -1,5 +1,5 @@
 /*
- * In contrast with heroes.component.spec.ts, these tests mock the ngrx-data EntityEffects.
+ * In contrast with heroes.component.spec.ts, these tests mock the _ngrx-data_ EntityEffects.
  *
  * If you don't have a HeroesService and want to talk to the store directly in your component,
  * you might consider this technique which intercepts the persist$ effect and mocks its behavior.
@@ -208,7 +208,7 @@ function heroesComponentClassSetup() {
   const appSelectors: AppSelectors = TestBed.get(AppSelectors);
   spyOn(appSelectors, 'dataSource$').and.returnValue(appSelectorsDataSource);
 
-  // Create Hero entity actions as ngrx-data will do it
+  // Create Hero entity actions as _ngrx-data_ will do it
   const entityActionFactory: EntityActionFactory = TestBed.get(EntityActionFactory);
   function createHeroAction(op: EntityOp, data?: any, options?: EntityActionOptions) {
     return entityActionFactory.create('Hero', op, data, options);

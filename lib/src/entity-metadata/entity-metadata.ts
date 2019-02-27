@@ -5,7 +5,7 @@ import { IdSelector, Comparer } from '../utils/ngrx-entity-models';
 
 export const ENTITY_METADATA_TOKEN = new InjectionToken<EntityMetadataMap>('ngrx-data/entity-metadata');
 
-/** Metadata that describe an entity type and its collection to ngrx-data */
+/** Metadata that describe an entity type and its collection to _ngrx-data_ */
 export interface EntityMetadata<T = any, S extends object = {}> {
   entityName: string;
   entityDispatcherOptions?: Partial<EntityDispatcherDefaultOptions>;

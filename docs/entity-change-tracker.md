@@ -18,7 +18,7 @@ the changes are immediately available to application code that is watching colle
 The app doesn't have to wait for confirmation that the entity operation succeeded on the server.
 
 A _pessimistic save_ doesn't update the store until the server until the server confirms that the save succeeded,
-which ngrx-data then turns into a "SUCCESS" action that updates the collection.
+which _ngrx-data_ then turns into a "SUCCESS" action that updates the collection.
 With a _pessimistic_ save, the changes won't be available in the store
 
 This confirmation cycle can (and usually will) take significant time and the app has to account for that gap somehow.
@@ -64,7 +64,7 @@ It is up to you if and when to dispatch one of the `UNDO_...` actions.
 
 ## Change Tracking
 
-The ngrx-data tracks an entity's change-state in the collection's `changeState` property.
+The _ngrx-data_ tracks an entity's change-state in the collection's `changeState` property.
 
 When change tracking is enabled (the default), the `changeState` is a _primary key to_ `changeState` _map_.
 
@@ -251,7 +251,7 @@ Undoing the change will restore the entity to the collection in its pre-update s
 ### Enabling and disabling change tracking
 
 You can opt-out of change tracking for a collection by setting the collection's `enableChangeTracking` flag to `false` in its `entityMetadata`.
-When `false`, ngrx-data does not track any changes for this collection
+When `false`, _ngrx-data_ does not track any changes for this collection
 and the `EntityCollection.changeState` property remains an empty object.
 
 You can also turnoff change tracking for a specific, cache-only action by choosing one of the

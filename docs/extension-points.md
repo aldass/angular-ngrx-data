@@ -16,7 +16,7 @@ You want to take over some or all of the management of that type.
 You can do that easily without abandoning _ngrx-data_ for the rest of your entity model.
 
 You can take it over completely simply by removing it from the entity metadata.
-Create your own collection and add it to the store's state-tree as you would in vanilla ngrx. Create your own actions, reducers, selectors and effects.
+Create your own collection and add it to the store's state-tree as you would in vanilla NgRx. Create your own actions, reducers, selectors and effects.
 As long as your actions don't have an `entityName` or `op` property,
 _ngrx-data_ will ignore them.
 
@@ -58,7 +58,7 @@ The default implementation concatenates the entity type name with the `EntityOp`
 For example, querying all heroes results in the entity type, `[Hero] ngrx-data/query-all`.
 
 If you don't like that approach you can replace the `formatActionType()` method with a generator that produces action type names that are more to your liking.
-The ngrx-data library doesn't make decisions based on the `Action.type`.
+The `ngrx-data` library doesn't make decisions based on the `Action.type`.
 
 ## Custom _EntityDispatcher_
 
@@ -77,12 +77,12 @@ and re-setting `defaultDispatcherOptions` _before_ creating dispatchers
 
 ## Custom _effects_
 
-The _ngrx-data_ library has one ngrx `@Effect`, the `EntityEffects` class.
+The _ngrx-data_ library has one NgRx `@Effect`, the `EntityEffects` class.
 
 This class detects entity persistence actions, performs the persistence operation with a
 call to an `EntityDataService` and channels the HTTP response through a
 `PersistenceResultHandler` which produces a persistence results observable that
-goes back to the ngrx store.
+goes back to the NgRx Store.
 
 The `EntityEffects` class intercepts actions that have an `op` property whose
 value is one of the `persistOps`. Other actions are ignored by this effect.

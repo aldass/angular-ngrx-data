@@ -37,7 +37,7 @@ import { EntityServicesElements } from './entity-services-elements';
  */
 @Injectable()
 export class EntityServicesBase implements EntityServices {
-  // Dear ngrx-data developer: think hard before changing the constructor.
+  // Dear _ngrx-data_ developer: think hard before changing the constructor.
   // Doing so will break apps that derive from this base class,
   // and many apps will derive from this class.
   //

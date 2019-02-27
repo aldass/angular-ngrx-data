@@ -6,7 +6,7 @@ Your component injects an _ngrx-data_ **`EntityCollectionService`** and calls on
 
 Your component also subscribes to one or more of the service's `Observable` _selectors_ in order to reactively process and display entity state changes produced by those commands.
 
-_Ngrx-data_ is really just ngrx under the hood. The data flows in typical ngrx fashion.
+_Ngrx-data_ is really just NgRx under the hood. The data flows in typical NgRx fashion.
 The following diagram illustrates the journey of a persistence `EntityAction`
 such as `QUERY_ALL` for the `Hero` entity type.
 

@@ -205,7 +205,7 @@ The sample app provides `HeroDataService` and registers it by calling the `regis
 
 import {
   ...  
-  EntityDataService, // <-- import the ngrx-data data service registry
+  EntityDataService, // <-- import the _ngrx-data_ data service registry
 } from 'ngrx-data';
 
 ...
